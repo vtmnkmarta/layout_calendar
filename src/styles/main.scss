@@ -22,7 +22,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 1px;
-  width: 7 * $daySize + 10px;
+  width: 7 * $daySize + 6px;
 
   &__day {
     box-sizing: border-box;
