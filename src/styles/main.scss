@@ -1,4 +1,13 @@
 $daySize: 100px;
+$gap: 1px;
+$borderWidth: 1px;
+$padding: 10px;
+$bgColor: #eee;
+$hoverBgColor: #ffbfcb;
+$fontFamily: Arial, Helvetica, sans-serif;
+$fontSize: 30px;
+$transitionDuration: 0.5s;
+$liftDistance: -20px;
 $days: (
   'mon': 0,
   'tue': 1,
@@ -21,8 +30,9 @@ body {
 .calendar {
   display: flex;
   flex-wrap: wrap;
-  gap: 1px;
-  width: 7 * $daySize + 6px;
+  gap: $gap;
+  width: 7 * $daySize + 6 * $gap;
+  padding: $padding;
 
   &__day {
     box-sizing: border-box;
@@ -31,11 +41,11 @@ body {
     align-items: center;
     width: $daySize;
     height: $daySize;
-    background-color: #eee;
-    border: 1px solid #000;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    transition-duration: 0.5s;
+    background-color: $bgColor;
+    border: $borderWidth solid #000;
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    transition-duration: $transitionDuration;
 
     @for $i from 1 through 31 {
       &:nth-child(#{$i})::before {
@@ -47,7 +57,7 @@ body {
   @each $day, $index in $days {
     &--start-day-#{$day} {
       .calendar__day:first-child {
-        margin-left: $index * $daySize + $index;
+        margin-left: $index * ($daySize + $gap);
       }
     }
   }
@@ -62,7 +72,10 @@ body {
 
   &__day:hover {
     cursor: pointer;
-    background-color: #ffbfcb;
+    background-color: $hoverBgColor;
     transform: translateY(-20px);
+    transition:
+      background-color $transitionDuration,
+      transform $transitionDuration;
   }
 }
